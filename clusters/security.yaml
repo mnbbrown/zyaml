@@ -1,0 +1,53 @@
+---
+name: IAS Zone
+
+types:
+  ZoneState: &zoneState
+    id: "0x0000"
+    default: "0x00"
+    name: Zone State
+    type: enum8
+    access: r
+    values:
+      0x00: Not Enrolled
+      0x01: Enrolled
+  ZoneType: &zoneType
+    id: "0x0001"
+    name: Zone Type
+    type: enum16
+    access: r
+    values:
+      0x0000: Standard CIE
+      0x000d: Motion sensor
+      0x0015: Contact switch
+      0x0028: Fire sensor
+      0x002a: Water sensor
+      0x002b: Carbon monoxide sensor
+      0x002c: Personal emergency device
+      0x002d: Vibration sensor
+  ZoneStatus: &zoneStatus
+    id: "0x0002"
+    name: Zone Status
+    default: "0x00"
+    access: r
+    type: bmp16
+    bits:
+      "0": Alarm1
+      "1": Alarm2
+      "2": Tamper
+      "3": Battery
+      "4": Supervision Reports
+      "5": Restore Reports
+      "6": Trouble
+      "7": AC
+      "8": Test
+      "9": Battery defect
+
+clusters:
+  - id: "0x0500"
+    name: IAS Zone
+    server:
+      attr:
+        - *zoneState
+        - *zoneType
+        - *zoneStatus
