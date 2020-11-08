@@ -1,0 +1,90 @@
+---
+name: Smart Energy
+
+types:
+  CurrentSummationDelivered: &currentSummationDelivered
+    id: "0x0000"
+    name: Current Summation Delivered
+    type: u48
+    access: r
+  CurrentSummationReceived: &currentSummationReceived
+    id: "0x0001"
+    name: Current Summation Received
+    type: u48
+    access: r
+  CurrentMaxDemandDelivered: &currentMaxDemandDelivered
+    name: Current Max Demand Delivered
+    id: "0x0002"
+    type: uint48
+    access: r
+  CurrentMaxDemandReceived: &currentMaxDemandReceived
+    name: Current Max Demand Received
+    id: "0x0003"
+    type: u48
+    access: r
+  DFTSummation: &dftSummation
+    name: DFT Summation
+    id: "0x0004"
+    type: u48
+    access: r
+  DailyFreezeTime: &dailyFreezeTime
+    name: Daily Freeze Time
+    id: "0x0005"
+    type: u16
+    access: r
+  PowerFactor: &powerFactor
+    name: Power Factor
+    id: "0x0006"
+    type: s8
+    access: r
+  ReadingSnapShotTime: &readingSnapShotTime
+    name: Reading Snap Shot Time
+    id: "0x0007"
+    type: utc
+    access: r
+  CurrentMaxDemandDeliveredTime: &currentMaxDemandDeliveredTime
+    name: Current Max Demand Delivered Time
+    id: "0x0008"
+    type: utc
+    access: r
+  CurrentMaxDemandReceivedTime: &currentMaxDemandReceivedTime
+    name: Current Max Demand Received Time
+    id: "0x0009"
+    type: utc
+    access: r
+  DefaultUpdatePeriod: &defaultUpdatePeriod
+    name: Default Update Period
+    id: "0x000A"
+    type: u8
+    access: r
+  FastPollUpdatePeriod: &fastPollUpdatePeriod
+    name: Fast Poll Update Period
+    id: "0x000B"
+    id: u8
+    access: r
+  InstantaneousDemand: &instantaneousDemand
+    id: "0x0400"
+    name: Instantaneous Demand
+    type: s24
+    default: 0
+
+clusters:
+  - id: "0x0702"
+    name: Metering (Smart Energy)
+    server:
+      attr:
+        # Reading Information Set
+        - *currentSummationDelivered
+        - *currentSummationReceived
+        - *currentMaxDemandDelivered
+        - *currentMaxDemandReceived
+        - *dftSummation
+        - *dailyFreezeTime
+        - *powerFactor
+        - *readingSnapShotTime
+        - *currentMaxDemandDeliveredTime
+        - *currentMaxDemandReceivedTime
+        - *defaultUpdatePeriod
+        - *fastPollUpdatePeriod
+        # Historical Consumption Set
+        - *instantaneousDemand
